@@ -1,0 +1,30 @@
+<h1>Владельцы</h1>
+<p class="edit_form_title"><img src="/DHO/images/plus.png" onclick="showForm(0,240,'#ownerAdd','#content');" class="action">  Добавить нового владельца</p>
+<div id="ownerAdd0" class="edit_form">
+          <form id="ownerAF<?php echo $owner['owner_id'];?>" method="post" action="/DHO/modules/owner/module.php?action=add">
+            <table class="tab">
+                <tr><td>Имя</td><td><input type="text" name="firstname" value="" required></td><td><span onclick="hideForm(0,'#ownerAdd');" class="hide_edit_form">-</span></td></tr>
+                <tr><td>Фамилия</td><td><input type="text" name="lastname" value=""required></td></tr>
+                <tr><td colspan="4">Адреса электронной почты</td></tr>
+                <tr>
+                   <?php
+                       echo'<td><input type="hidden" name="emailId0" value=""><input type="text" name="email0" value=""></td>';
+                       echo'<td><input type="hidden" name="emailId1" value=""><input type="text" name="email1" value=""></td>';
+                       echo'<td><input type="hidden" name="emailId2" value=""><input type="text" name="email2" value=""></td>';
+                   
+                   
+                   ?>
+                </tr>
+                 <tr><td colspan="4">Номера телефонов</td></tr>
+                <tr>
+                   <?php
+                       echo'<td><input type="hidden" name="phoneId0" value=""><input id="phone" type="text" name="phone0" value=""></td>';
+                       echo'<td><input type="hidden" name="phoneId1" value=""><input id="phone" type="text" name="phone1" value=""></td>';
+                       echo'<td><input type="hidden" name="phoneId2" value=""><input id="phone" type="text" name="phone2" value=""></td>';
+                   
+                   ?>
+                </tr>
+                <tr><td colspan="4"><button type="submit" class="button">Сохранить</button></td></tr>
+            </table>
+      </form>
+      </div> 

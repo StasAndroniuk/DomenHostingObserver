@@ -1,0 +1,47 @@
+<h1>Домены</h1>
+<p class="edit_form_title"><img src="/DHO/images/plus.png" onclick="showForm(0,290,'#domenAdd','#content');" class="action">  Добавить новый домен</p>
+<div id="domenAdd0" class="edit_form">
+          <form id="domenAF<?php echo $domen['domen_id'];?>" method="post" action="/DHO/modules/domen/module.php?action=add">
+            <table class="tab">
+                   <tr><td>Имя хостинга</td><td>Дата окончания действия</td><td>Владелец</td><td colspan="2">Регистратор</td></tr>
+                   <tr><td><select name="hosting_id">
+                             <?php
+                                  foreach ($info['hostings'] as $hosting) {
+                                          echo'<option value="'.$hosting['hosting_id'].'">'.$hosting['name'].'</option>';
+                                  }
+                             ?>
+                            </select>
+                      </td>      
+                      <td><input type="text" id="datepicker" name="date_of_end">
+                      </td>
+                      <td><select name="owner_id">
+                             <?php
+                                  foreach ($info['owners'] as $owner) {
+                                          echo'<option value="'.$owner['owner_id'].'">'.$owner['name'].'</option>';
+                                  }
+                             ?>
+                            </select>
+                      </td>  
+                       <td><select name="recorder_id">
+                             <?php
+                                  foreach ($info['recorders'] as $recorder) {
+                                          echo'<option value="'.$recorder['recorder_id'].'">'.$recorder['name'].'</option>';
+                                  }
+                             ?>
+                            </select>
+                      </td>         <td><span onclick="hideForm(0,'#domenAdd');" class="hide_edit_form">-</span></td></tr>    
+                
+                <tr><td colspan="5">Название домена</td></tr>
+                <tr><td><input type="text" name="domen_name"></td><td colspan="4"><input type="checkbox" name="status" value="1">Отслеживать / Не отслеживать</td></tr>
+                <tr><td colspan="5">Примечание</td></tr>      </table>
+                <textarea name="comment" rows="10" cols="80"></textarea><button type="submit" class="button" style="margin-left: 20px;">Сохранить</button>
+          
+      </form>
+      </div>
+     <div class="group-operations">
+    Для выбранных&nbsp&nbsp&nbsp<select id="operation">
+         <option value="0" selected>--</option>
+         <option value="1">Удалить</option>
+         <option value="2">Изменить статус</option>
+     </select>&nbsp&nbsp&nbsp<button class="button" onclick="GroupAction('domen');">Ok</button>
+ </div>

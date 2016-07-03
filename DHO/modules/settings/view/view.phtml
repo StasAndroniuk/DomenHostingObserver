@@ -1,0 +1,47 @@
+﻿<script>showForm(0,'auto','#settingsEF','#settings0');</script>
+<div id="settings0" class="settings">
+ 
+      <div id="settingsEdit0" class="settings">
+          <h1>Настройки</h1>
+         <form id="settingsEF0" method="post" action="/DHO/modules/settings/module.php?action=save">
+            
+            <table class="tab">
+               <tr><td><?php echo $settings['first_warning']['description'];?></td>
+                   <td><select name="<?php echo $settings['first_warning']['name'];?>">
+                         <option selected value="<?php echo $settings['first_warning']['value'];?>"><?php echo $settings['first_warning']['value'];?></option>
+                         <?php
+                                for ($i=1; $i < 11; $i++) {
+                                    if($settings['first_warning']['value']==$i)continue;
+                                    echo'<option value="'.$i.'">'.$i.'</option>';
+                                }
+                         ?>
+                       </select> недели
+                   </td>
+                 </tr>
+                 <tr><td><?php echo $settings['second_warning']['description'];?></td>
+                   <td><select name="<?php echo $settings['second_warning']['name'];?>">
+                         <option selected value="<?php echo $settings['second_warning']['value'];?>"><?php echo $settings['second_warning']['value'];?></option>
+                         <?php
+                                for ($i=1; $i < 8; $i++) { 
+                                    if($settings['second_warning']['value']==$i)continue;
+                                    echo'<option value="'.$i.'">'.$i.'</option>';
+                                }
+                         ?>
+                       </select> дни 
+                   </td>                     
+                 </tr>
+                 <tr><td><?php echo $settings['admin_email']['description'];?></td><td><input type="text" name="admin_email" value="<?php echo $settings['admin_email']['value'];?>"></td></tr>
+                 <input type="hidden" name="user_id" value="<?php echo $settings['user_id'];?>">
+                 <tr><td>Логин пользователя:</td><td><input type="text" name="admin_login" value="<?php echo $settings['login'];?>"></td></tr>
+                 <tr><td>Старый пароль:</td><td><input type="password" name="old_pass"></td></tr>
+                 <tr><td>новый пароль:</td><td><input type="password" name="new_pass"></td></tr>
+                 <tr><td colspan="2"><button type="submit" class="button">Сохранить</button></td></tr>
+                <tr><td colspan="2">Ссылка для выполнения проверки сроков доменов и хостингов:<br><?php echo'http://'.$_SERVER[SERVER_NAME].'/DHO/modules/checker/module.php';?></td></tr>
+            </table>
+      </form>
+      </div> </td></tr>
+    </table>
+    
+    
+    
+  </div>

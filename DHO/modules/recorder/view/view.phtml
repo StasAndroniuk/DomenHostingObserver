@@ -1,0 +1,22 @@
+<div id="recorder<?php echo $recorder['recorder_id'];?>" class="recorder">
+    <table class="tab">
+        <?php if($recorder['first']==1):?>
+        <tr><td>Название регистратора </td><td>Логин входа</td><td colspan="2">Пароль</td></tr>
+        <?php endif;?>
+        <tr><td><?php echo $recorder['name'];?></td><td><?php echo $recorder['login'];?></td><td><?php echo $recorder['pass'];?></td>
+    </td><td><img src="images/pencil.png" width="20" height="20" onclick="showForm(<?php echo $recorder['recorder_id'];?>,140,'#recorderEdit','#recorder<?php echo $recorder['recorder_id'];?>');" class="action">&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<img src="/DHO/images/del_cross.png" class="action" onClick="deleteObject(<?php echo $recorder['recorder_id'];?>,'recorder');"></td></tr><tr><td colspan="4">
+          
+      <div id="recorderEdit<?php echo $recorder['recorder_id'];?>" class="edit_form">
+          <p class="edit_form_title">Редактрование данных регистратора</p>
+         <form id="recorderEF<?php echo $recorder['recorder_id'];?>" method="post" action="/DHO/modules/recorder/module.php?action=edit">
+            <input type="hidden" value="<?php echo $recorder['recorder_id'];?>" name="recorder_id">
+            <table class="tab">
+                <tr><td>Название регистратора </td><td>Логин входа</td><td colspan="2">Пароль</td><td><span onclick="hideForm(<?php echo $recorder['recorder_id'];?>,'#recorderEdit');" class="hide_edit_form">-</span></td></tr>
+                <tr><td><input type="text" name="name" value="<?php echo $recorder['name'];?>"></td><td><input type="text" name="login" value="<?php echo $recorder['login'];?>"></td><td colspan="2"><input type="text" name="pass" value="<?php echo $recorder['pass'];?>"></td></tr>
+                <tr><td colspan="4"><button type="submit" class="button">Сохранить</button></td></tr>
+            </table>
+      </form>
+      </div> </td></tr>
+    </table>
+  </div>
+  

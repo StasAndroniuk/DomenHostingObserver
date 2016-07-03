@@ -1,0 +1,27 @@
+<h1>Хостинги</h1>
+<p class="edit_form_title"><img src="/DHO/images/plus.png" onclick="showForm(0,310,'#hostingAdd','#content');" class="action">  Добавить новой хостинг</p>
+<div id="hostingAdd0" class="edit_form">
+          <form id="hostingAF<?php echo $hosting['hosting_id'];?>" method="post" action="/DHO/modules/hosting/module.php?action=add">
+            <table class="tab">
+                <tr><td colspan="4"><span onclick="hideForm(0,'#hostingAdd');" class="hide_edit_form">-</span></td></tr>
+                <tr><td>Название хостинга</td><td>Дата окончания</td><td>Логин</td><td>Пароль</td></tr>
+                <tr><td><input type="text" name="hosting_name" required></td><td><input type="text" name="date_of_end" id="datepicker" required></td><td><input type="text" name="login" required></td><td><input type="text" name="pass" required></td></tr>
+                 <tr><td>Владелец</td><td>Имя пользовалеля</td><td colspan="2">Отслеживать?</td><tr>
+                 <tr><td><select name="owner_id" required>
+                     <?php
+                            foreach ($owners as $owner) {
+                                echo'<option value="'.$owner['owner_id'].'">'.$owner['owner'].'</option>';
+                            }
+                     ?></select></td><td><input type="text" name="user_name"required></td><td colspan="2"><input type="checkbox" name="status" value="1"></td></tr>
+                     <tr><td cospan="4">Примечание</td></tr>
+                     <tr><td colspan="2"><textarea name="comment" cols="55" rows="10"></textarea></td><td colspan="2" style="vertical-align:bottom;"><button type="submit" class="button">Сохранить</button></td></tr>
+           </table>
+      </form>
+      </div>
+ <div class="group-operations">
+    Для выбранных&nbsp&nbsp&nbsp<select id="operation">
+         <option value="0" selected>--</option>
+         <option value="1">Удалить</option>
+         <option value="2">Изменить статус</option>
+     </select>&nbsp&nbsp&nbsp<button class="button" onclick="GroupAction('hosting');">Ok</button>
+ </div>

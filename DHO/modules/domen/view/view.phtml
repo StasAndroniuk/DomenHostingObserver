@@ -1,0 +1,40 @@
+<div id="domen<?php echo $domen['domen_id'];?>" class="domen">
+    <table class="tab <?php if($domen['overdue']==1) echo'overdue';?>">
+        <?php if($domen['first']==1):?>
+        <tr><td>Имя домена </td><td>Дата окончания</td><td>Регистратор</td><td>Владелец</td><td>Статуc</td><td></td></tr>
+        <?php endif;?>
+        <tr><td><input type="checkbox" id="domenChecker<?php echo $domen['domen_id'];?>">&nbsp&nbsp<?php echo $domen['domen_name'];?></td><td><?php echo $domen['date_of_end'];?></td><td><?php echo $domen['reg_name'];?></td><td><?php echo $domen['owner'];?></td>
+        <td><img src="images/<?php if($domen['status']==1) echo'yes';else echo'no';?>.png" class="action" onclick="ActiveByClick('#domen<?php echo $domen['domen_id'];?>','#domenEF<?php echo $domen['domen_id'];?>');"></td>
+        <td><img src="images/pencil.png" width="20" height="20" onclick="showForm(<?php echo $domen['domen_id'];?>,260,'#domenEdit','#domen<?php echo $domen['domen_id'];?>');" class="action">&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<img src="/DHO/images/del_cross.png" class="action" onClick="deleteObject(<?php echo $domen['domen_id'];?>,'domen');"></td></tr>
+        <?php if($domen['comment']!=''):?>
+        <tr><td colspan="6">Примечание</td></tr>
+        <tr><td colspan="6"><?php echo $domen['comment'];?></td></tr>
+        <?php endif;?>
+      <tr><td colspan="6">          
+      <div id="domenEdit<?php echo $domen['domen_id'];?>" class="edit_form">
+          <p class="edit_form_title">Редактрование данных домена<span onclick="hideForm(<?php echo $domen['domen_id'];?>,'#domenEdit');" class="hide_edit_form">-</span>
+         <form id="domenEF<?php echo $domen['domen_id'];?>" method="post" action="/DHO/modules/domen/module.php?action=edit">
+            <table class="tab">
+                <tr><td><input id="domen<?php echo $domen['domen_id'];?>Status" type="checkbox" name="active" value="1" <?php if($domen['status']==1) echo'checked'; ?>>&nbsp&nbsp&nbspОтслеживать/Не отслеживать</td><td>Дата окончания<input type="text" id="datepicker<?php echo $domen['domen_id'];?>" name="date_of_end" value="<?php echo $domen['date_of_end'];?>"></td><td colspan="2">Продлить на 
+                    <select name="extend">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select> год/лет</td></tr> 
+                    <tr><td colspan="2">Примечание</td></tr>
+                    <tr><td><textarea cols="40" rows="8" name="comment"><?php echo $domen['comment'];?></textarea></td><td style="vertical-align:bottom;"><button type="submit" class="button">Сохранить</button></td></tr>
+            <input type="hidden" value="<?php echo $domen['domen_id'];?>" name="domen_id">
+            
+           
+            
+         </table>
+         </form>
+      </div> </td></tr>
+    </table>
+    
+    
+    
+  </div>

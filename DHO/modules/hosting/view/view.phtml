@@ -1,0 +1,65 @@
+<div id="hosting<?php echo $hosting['hosting_id'];?>" class="hosting">
+       <table class="tab <?php if($hosting['overdue']==1) echo'overdue';?>">
+           <?php if($hosting['first']==1):?>
+                <tr><td><nobr>Название хостинга</nobr></td><td>Дата окончания</td><td>Логин</td><td>Пароль</td><td>Актиность</td></tr><?php endif;?>
+                <tr><td><input type="checkbox" id="hostingChecker<?php echo $hosting['hosting_id'];?>">&nbsp&nbsp<?php echo $hosting['name'];?></td>
+                <td><nobr><?php echo $hosting['date_of_end'];?></nobr></td><td><?php echo $hosting['login'];?></td>
+                <td><?php echo $hosting['pass'];?></td>
+                <td><img src="images/<?php if($hosting['status']==1) echo'yes';else echo'no';?>.png" class="action" onclick="ActiveByClick('#hosting<?php echo $hosting['hosting_id'];?>','#hostingEF<?php echo $hosting['hosting_id'];?>');">|&nbsp&nbsp<span id="sub-info" onclick="SubInfo('#hosting<?php echo $hosting['hosting_id'];?>');">+</span>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp<img src="images/pencil.png" width="20" height="20" onclick="showForm(<?php echo $hosting['hosting_id'];?>,310,'#hostingEdit','#hosting<?php echo $hosting['hosting_id'];?>');" class="action">&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<img src="/DHO/images/del_cross.png" class="action" onClick="deleteObject(<?php echo $hosting['hosting_id'];?>,'hosting');"></td></tr>
+                
+                <tr class="sub-info"><td colspan="2">Примечание</td><td colspan="4"></td></tr>
+                <tr class="sub-info"><td colspan="2" rowspan="2"><?php echo $hosting['comment'];?></td><td>Владелец</td><td>Имя пользователя</td><td colspan="2">Сайты хостинга</td></tr>
+                <tr class="sub-info"><td><?php echo $hosting['owner'];?></td><td><?php echo $hosting['user_name'];?></td>
+                <?php 
+                      
+                     echo'<td><divclass="listbox">';
+                          foreach ($hosting['domens'] as $domen) {
+                              echo $domen['name'].'<br>';
+                          }
+                          
+                    echo'</div></td>';
+                    ?>
+                </td></tr>
+                  </table>
+    
+     
+      <div id="hostingEdit<?php echo $hosting['hosting_id'];?>" class="edit_form">
+          <span onclick="hideForm(<?php echo $hosting['hosting_id'];?>,'#hostingEdit');" class="hide_edit_form">-</span>
+            <p class="edit_form_title">Редактрование данных хостинга</p>
+         <form id="hostingEF<?php echo $hosting['hosting_id'];?>" method="post" action="/DHO/modules/hosting/module.php?action=edit">
+            <input type="hidden" value="<?php echo $hosting['hosting_id'];?>" name="hosting_id">
+            <input type="hidden" value="<?php echo $hosting['date_of_end'];?>" name="date_of_end">
+            <table class="tab">
+                <tr><td>Логин входа</td><td>Пароль</td><td>Дата окончания</td><td>Имя пользователя</td><td>Отслеживать?</td></tr>
+                <tr><td><input type="text" name="login" value="<?php echo $hosting['login'];?>"></td><td><input type="text" name="pass" value="<?php echo $hosting['pass'];?>"></td><td><input type="text" name="date_of_end" id="datepicker<?php echo $hosting['hosting_id'];?>" value="<?php echo $hosting['date_of_end'];?>"></td><td><input type="text" name="user_name" value="<?php echo $hosting['user_name'];?>"></td><td><input id="hosting<?php echo $hosting['hosting_id'];?>Status" type="checkbox" name="status" value="1" <?php if($hosting['status']==1) echo'checked';?>></td></tr>
+                <tr><td colspan="2">Примечание</td><td colspan="2">Продление</td></tr>
+                <tr><td colspan="2" rowspan="3"><textarea name="comment" cols="55" rows="10"><?php echo $hosting['comment'];?></textarea></td>
+                    <td>Год/лет</td><td>Месяцев</td></tr>
+                    
+                    <tr><td><select name="year">
+                        <?php
+                        for ($i=0; $i < 6; $i++) { 
+                            echo'<option value="'.$i.'">'.$i.'</option>';
+                        }
+                        ?>
+                        </select>   
+                   
+                    </td>
+                    <td><select name="month">
+                        <?php
+                        for ($i=0; $i < 13; $i++) { 
+                            echo'<option value="'.$i.'">'.$i.'</option>';
+                        }
+                        ?>
+                        </select>   
+                  
+                    </td></tr>
+                    <tr><td colspan="2"><button type="submit" class="button">Сохранить</button></td></tr>
+            </table>
+      </form>
+      </div> </td></tr>
+    </table>
+    
+    
+    
+  </div>
